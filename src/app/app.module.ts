@@ -8,11 +8,17 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { TopNavComponent } from './top-nav/top-nav.component';
+import { DepartmentsComponent } from '../components/departments/departments.component';
+import { TimesheetComponent } from '../components/timesheet/timesheet.component';
+import { AnalyticsComponent } from '../components/analytics/analytics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopNavComponent
+    TopNavComponent,
+    DepartmentsComponent,
+    TimesheetComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,
