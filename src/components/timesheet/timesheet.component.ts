@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/interfaces/department';
 import { DepartmentsService } from 'src/services/departments.service';
-
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-timesheet',
@@ -12,6 +12,7 @@ import { DepartmentsService } from 'src/services/departments.service';
 export class TimesheetComponent {
   departments: Department[];
   department: Department;
+  employeeNameFC = new FormControl('');
 
 
   constructor(
