@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/interfaces/department';
 import { DepartmentsService } from 'src/services/departments.service';
 import { FormControl } from '@angular/forms';
+import { Employee } from '../../interfaces/employee'
 
 @Component({
   selector: 'app-timesheet',
@@ -13,6 +14,8 @@ export class TimesheetComponent {
   departments: Department[];
   department: Department;
   employeeNameFC = new FormControl('');
+  employees: Employee[] = [];
+  employeeId = 0;
 
 
   constructor(
@@ -24,5 +27,17 @@ export class TimesheetComponent {
     this.department = this.departments.find(department => department.id === this.route.snapshot.params['id']);
 
   }
+  addEmployee(): void {
+    if (this.employeeNameFC.value) {
+      this.employeeId++;
 
+      this.employees.push({
+        id: this.employeeId.toString(),
+        departmentId: this.department?.id,
+        name: this.employeeNameFC.value,
+        payRate: Math.floor(Math.random() * 50) + 50,
+      });
+      this.employeeNameFC.setValue('');
+    }
+  }
 }
