@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Department } from 'src/interfaces/department';
 import { DepartmentsService } from 'src/services/departments.service';
-import { FormControl } from '@angular/forms';
-import { Employee } from '../../interfaces/employee'
+import { FormControl, ValidatorFn, AbstractControl  } from '@angular/forms';
+import { Employee } from '../../interfaces/employee';
+
 
 @Component({
   selector: 'app-timesheet',
@@ -13,7 +14,7 @@ import { Employee } from '../../interfaces/employee'
 export class TimesheetComponent {
   departments: Department[];
   department: Department;
-  employeeNameFC = new FormControl('');
+  employeeNameFC = new FormControl('', this.nameValidator());
   employees: Employee[] = [];
   employeeId = 0;
 
@@ -40,4 +41,18 @@ export class TimesheetComponent {
       this.employeeNameFC.setValue('');
     }
   }
-}
+  nameValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key:string]: any } | null => {
+      let error = null;
+      if (this.employees && this.employees.length) {
+        this.employees.forEach(employee => {
+          if (employee.name.toLowerCase() === control.value.toLowerCase()) {
+            error = {duplicate: true};
+          }
+          });
+        }
+        return error;
+      }
+    }
+  }
+
