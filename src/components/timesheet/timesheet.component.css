@@ -12,4 +12,9 @@ mat-form-field {
 
 .hours {
   margin-top: 30px;
+}
+
+.formAlign {
+  display: flex;
+  flex-direction: row;
 }/*# sourceMappingURL=timesheet.component.css.map */
