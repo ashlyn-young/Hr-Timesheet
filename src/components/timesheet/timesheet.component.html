@@ -2,7 +2,7 @@
     <div class="cards">
         <h2 *ngIf="department">{{department.name}}</h2>
 
-        <mat-card>
+        <mat-card class="formAlign">
             <mat-form-field>
                 <input matInput [formControl]="employeeNameFC" placeholder="Employee Name" type="text">
                 <mat-error *ngIf="employeeNameFC" placeholder="Employee Name" type="text">Duplicate Name</mat-error>
