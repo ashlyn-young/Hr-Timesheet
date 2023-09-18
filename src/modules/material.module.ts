@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -21,17 +22,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
   exports:[
-      MatToolbarModule,
-      MatButtonModule,
-      MatIconModule,
-      MatCardModule,
-      MatListModule,
-      MatInputModule,
-      MatFormFieldModule,
-      ReactiveFormsModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+
+      
   ]
 })
 export class MaterialModule { }
