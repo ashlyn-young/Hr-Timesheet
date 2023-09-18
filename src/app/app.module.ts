@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AnalyticsTableComponent } from '../components/analytics-table/analytics-table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     TopNavComponent,
     DepartmentsComponent,
     TimesheetComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    AnalyticsTableComponent
   ],
   imports: [
     BrowserModule,
