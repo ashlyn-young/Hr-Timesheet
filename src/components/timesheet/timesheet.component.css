@@ -27,4 +27,8 @@ mat-form-field {
 .formAlign {
   display: flex;
   flex-direction: row;
+}
+
+.total-cell {
+  text-align: center;
 }/*# sourceMappingURL=timesheet.component.css.map */
