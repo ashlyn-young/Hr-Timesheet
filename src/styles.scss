@@ -15,3 +15,20 @@ h2 {
 .cards {
     margin: auto;
 }
+table {
+    border-collapse: collapse;
+}
+th {
+    border-bottom: 1px solid black;
+    &:not(:first-child) {
+        padding-left: 15px;
+    }
+}
+td {
+    text-align: center;
+    padding: 10px 0px;
+}
+
+tr td {
+    border-bottom: 1px solid #c1c1c1
+}
