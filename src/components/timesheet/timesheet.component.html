@@ -7,7 +7,7 @@
                 <input matInput [formControl]="employeeNameFC" placeholder="Employee Name" type="text">
                 <mat-error *ngIf="employeeNameFC" placeholder="Employee Name" type="text">Duplicate Name</mat-error>
             </mat-form-field>
-            <button mat-mini-fab color="primary" (click)="addEmployee()">
+            <button mat-mini-fab color="primary" (click)="addEmployee()" [disabled]="employeeNameFC.invalid">
                 <mat-icon>add</mat-icon>
             </button>
             <div>{{employees | json}}</div>
