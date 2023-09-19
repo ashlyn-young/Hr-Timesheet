@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AnalyticsTableComponent } from '../components/analytics-table/analytics-table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AnalyticsTableComponent } from '../components/analytics-table/analytics
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule
 
     
   ],
