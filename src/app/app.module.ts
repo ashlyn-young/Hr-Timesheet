@@ -19,6 +19,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AnalyticsTableComponent } from '../components/analytics-table/analytics-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../../environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +47,10 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+
 
     
   ],
