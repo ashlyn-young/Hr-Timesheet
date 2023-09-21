@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from 'src/interfaces/department';
 import { DepartmentsService } from 'src/services/departments.service';
 import { FormControl, ValidatorFn, AbstractControl  } from '@angular/forms';
 import { Employee } from '../../interfaces/employee';
+import { EmployeeService } from 'src/services/employee.service';
+import { Observable, switchMap, tap } from 'rxjs';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { Employee } from '../../interfaces/employee';
   styleUrls: ['./timesheet.component.scss']
 })
 export class TimesheetComponent {
-  departments: Department[];
+  $departments: Observable<Department[]> | undefined;
   department: Department;
   employeeNameFC = new FormControl('', this.nameValidator());
   employees: Employee[] = [];
@@ -23,18 +25,28 @@ export class TimesheetComponent {
   constructor(
     private route: ActivatedRoute,
     private departmentsService: DepartmentsService,
+    private employeeService: EmployeeService,
+    private router: Router,
   ){}
   ngOnInit(): void {
-    this.departments = this.departmentsService.departments;
-    this.department = this.departments.find(department => department.id === this.route.snapshot.params['id']);
+    this.$departments = this.departmentsService.getDepartments();
 
-  }
+    this.$departments.pipe(
+      switchMap(departments => {
+        this.department = departments.find(dept => dept.id === this.route.snapshot.params['id'])
+        return this.employeeService.getEmployeeHoursByDepartment(this.department.id);
+      }),
+      tap(employees => {
+        this.employees = employees;
+      })
+    ).subscribe();
+}
   addEmployee(): void {
     if (this.employeeNameFC.value) {
       this.employeeId++;
 
       this.employees.push({
-        id: this.employeeId.toString(),
+        // id: this.employeeId.toString(),
         departmentId: this.department?.id,
         name: this.employeeNameFC.value,
         payRate: Math.floor(Math.random() * 50) + 50,
@@ -67,6 +79,13 @@ export class TimesheetComponent {
     }
     deleteEmployee(index: number): void {
       this.employees.splice(index, 1);
+    }
+    submit(): void {
+      this.employees.forEach(employee => {
+        this.employeeService.saveEmployeeHours(employee);
+      });
+  
+      this.router.navigate(['./departments']);
     }
   }
 

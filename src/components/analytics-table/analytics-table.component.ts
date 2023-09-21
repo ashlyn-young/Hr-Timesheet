@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from 'src/interfaces/employee';
+import { EmployeeService } from 'src/services/employee.service';
 
 @Component({
   selector: 'app-analytics-table',
@@ -66,9 +67,9 @@ export class AnalyticsTableComponent implements OnInit {
         wednesday: 5
     }
 ];
-  constructor() {}
+  constructor(private employeeService: EmployeeService) {}
   ngOnInit(): void {
-    this.employees = this.employeeData.filter(employee => employee.departmentId === this.departmentId);
+    // this.employees = this.employeeData.filter(employee => employee.departmentId === this.departmentId);
 }
   getTotalHours(employee: Employee): number {
     return employee.monday + employee.tuesday + employee.wednesday

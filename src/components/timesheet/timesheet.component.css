@@ -32,4 +32,10 @@ mat-form-field {
 
 .total-cell {
   text-align: center;
+}
+
+.submit {
+  width: 75px;
+  margin-left: auto;
+  margin-top: 15px;
 }/*# sourceMappingURL=timesheet.component.css.map */
